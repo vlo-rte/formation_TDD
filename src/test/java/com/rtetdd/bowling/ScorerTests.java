@@ -1,6 +1,5 @@
 package com.rtetdd.bowling;
 
-import junit.extensions.TestSetup;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +34,7 @@ public class ScorerTests {
 	public void getScore_AfterOneFrameOpenOf7_FirstThrow5() {
 
 		//given
-		scorerTest.setFrame(1);
+		scorerTest.setIndexFrame(1);
 		scorerTest.setScore(7);
 
 		//when
@@ -43,5 +42,21 @@ public class ScorerTests {
 
 		//then
 		Assert.assertEquals(12, scorerTest.getScore());
+	}
+
+	@Test
+	public void getScore_AfterSpare() {
+		//given
+		scorerTest.setIndexFrame(1);
+		scorerTest.setSpare(true);
+		scorerTest.setScore(10);
+
+		//when
+		scorerTest.roll(4);
+		scorerTest.roll(2);
+
+		//then
+		Assert.assertEquals(20, scorerTest.getScore());
+		//Assert.assertEquals(2, scorerTest.getIndexFrame());
 	}
 }
